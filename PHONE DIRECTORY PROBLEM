@@ -28,3 +28,47 @@ By running the search query on contact list
 for "geei" we get: "geeikistest".
 No results found for "geeip", so print "0". 
 No results found for "geeips", so print "0"
+
+
+solution:
+
+
+
+
+
+
+class Solution{
+public:
+    vector<vector<string>> displayContacts(int n, string contact[], string s)
+    {
+        // code here
+        vector<vector<string>>res;
+        set<string >st;
+        string ans="";
+        for(int i=0;i<n;++i)
+        {
+            st.insert(contact[i]);
+        }
+        for(int i=0;i<s.length();++i)
+        {
+            ans+=s[i];
+            vector<string>temp;
+            for(auto j:st)
+            {
+                if(i>j.size())
+                {
+                    continue;
+                }
+                else if(ans==j.substr(0,i+1)){
+                    temp.push_back(j);
+                }
+            }
+            if(temp.size()==0)
+            {
+                temp.push_back("0");
+            }
+            res.push_back(temp);
+        }
+        return res;
+    }
+};
