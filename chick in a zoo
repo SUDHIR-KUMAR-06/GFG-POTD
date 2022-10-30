@@ -1,0 +1,37 @@
+Initially, the zoo have a single chick. A chick gives birth to 2 chicks every day and the life expectancy of a chick is 6 days. Zoo officials want to buy food for
+chicks so they want to know the number of chicks on an Nth day. Help the officials with this task.
+ 
+
+Example 1:
+
+Input: N = 2 
+Output: 3
+Explanation: First day there is only 1 chick.
+On second day total number of chicks = 3. 
+Example 2:
+
+Input: N = 3
+Output: 9
+Explanation: First day there is only 1 chick.
+On second day total number of chicks = 3.
+On third day total number of chicks = 9
+
+solution:
+we store only new chicks and after 6 days we subtract old chicks
+
+
+long long int NoOfChicks(int n){
+	    // Code here
+	    vector<long long int>ans(n,0);
+	    ans[0]=1;
+	    long long int count=1;
+	    for(int i=1;i<n;i++)
+	    {
+	        if(i>5){
+	            count=count-ans[i-6];
+	        }
+	        ans[i]=2*count;
+	        count+=ans[i];
+	    }
+	    return count;
+	}
